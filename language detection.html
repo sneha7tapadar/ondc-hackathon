@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Language Detection Example</title>
+    <!-- Include langdetect library (download from https://github.com/shuyo/language-detection) -->
+    <script src="path/to/langdetect.js"></script>
+</head>
+<body>
+    <label for="language">Select Language:</label>
+    <select id="language" name="language">
+        <option value="en">English</option>
+        <option value="as">Assamese</option>
+        <option value="bn">Bengali</option>
+        <option value="brx">Bodo</option>
+        <option value="doi">Dogri</option>
+        <option value="gu">Gujarati</option>
+        <option value="hi">Hindi</option>
+        <option value="kn">Kannada</option>
+        <option value="ks">Kashmiri</option>
+        <option value="kok">Konkani</option>
+        <option value="mai">Maithili</option>
+        <option value="ml">Malayalam</option>
+        <option value="mr">Marathi</option>
+        <option value="mni">Meitei</option>
+        <option value="ne">Nepali</option>
+        <option value="or">Odia</option>
+        <option value="pa">Punjabi</option>
+        <option value="sa">Sanskrit</option>
+        <option value="sat">Santali</option>
+        <option value="sd">Sindhi</option>
+        <option value="ta">Tamil</option>
+        <option value="te">Telugu</option>
+        <option value="ur">urdu</option>
+    </select>
+    <br>
+    <label for="userInputText">Enter your query or information: </label>  
+    <textarea id="userInputText" name="userInputText" rows="4" cols="50"></textarea>
+    <br>
+    <button type="button" onclick="submitUserInputText()">Submit</button>
+    <script>
+         function submitUserInputText() {
+            var selectedLanguage = document.getElementById("language").value; 
+            var userInputText = document.getElementById("userInputText").value;
+            console.log("Selected Language:", selectedLanguage);
+            console.log("User Input Text:", userInputText);
+         }
+    </script>
+    <label for="inputType">Select Input Type:</label>
+    <select id="inputType" name="inputType">
+        <option value="text">Text</option>
+        <option value="voice">Voice</option>
+        <option value="image">Image</option>
+    </select>
+
+    <br>
+
+    <label for="userInputVoice">Enter your voice input:</label>
+    <div id="output"></div>
+    <button id="startButton">Start Recording</button>
+    <script>
+        const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+
+        recognition.lang = 'en-US';
+        recognition.interimResults = false;
+        recognition.maxAlternatives = 1;
+
+        document.getElementById('startButton').addEventListener('click', () => {
+            recognition.start();
+        });
+
+        recognition.addEventListener('result', (event) => {
+            const transcript = event.results[0][0].transcript;
+            document.getElementById('output').textContent = transcript;
+            document.getElementById("userInputVoice").value = transcript;
+        });
+
+        recognition.addEventListener('end', () => {
+            recognition.stop();
+        });
+    </script>
+
+    <label for="userInputImage">Enter your image input:</label>
+    <textarea id="userInputImage" name="userInputImage" rows="4" cols="50"></textarea>
+    <br>
+
+    <button type="button" onclick="detectLanguage()">Detect Language</button>
+
+    <script>
+        function detectLanguage() {
+            var inputType = document.getElementById("inputType").value;
+            var userInputText = document.getElementById("userInputText").value;
+            var userInputVoice = document.getElementById("userInputVoice").value;
+            var userInputImage = document.getElementById("userInputImage").value;
+
+            var detectedLanguage;
+
+            if (inputType === "text") {
+                // Use langdetect for text-based language detection
+                detectedLanguage = detectLanguageText(userInputText);
+            } else if (inputType === "voice") {
+                // For voice input, you might use a speech-to-text API and then apply text-based language detection
+                // For simplicity, let's assume text-based detection for this example
+                detectedLanguage = detectLanguageText(userInputVoice);
+            } else if (inputType === "image") {
+                // For image input, you might use an OCR (Optical Character Recognition) API and then apply text-based language detection
+                // For simplicity, let's assume text-based detection for this example
+                detectedLanguage = detectLanguageText(userInputImage);
+            }
+
+            // Display the detected language
+            alert("Detected Language: " + detectedLanguage);
+        }
+
+        function detectLanguageText(text) {
+            // Use langdetect to detect the language of the provided text
+            var langDetector = new LanguageDetect();
+            var result = langDetector.detect(text);
+            return result && result.length > 0 ? result[0][0] : "Language not detected";
+        }
+    </script>
+</body>
+</html>

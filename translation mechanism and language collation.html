@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Localized UI Example</title>
+</head>
+<body>
+    <label for="language">Select Language:</label>
+    <select id="language" name="language" onchange="changeLanguage()">
+        <option value="en">English</option>
+        <option value="as">অসমীয়া (Assamese)</option>
+        <option value="bn">ব়াঙ়ালি (Bengali)</option>
+        <option value="brx">बड़ो (Bodo)</option>
+        <option value="doi">ड़ोगरी (Dogri)</option>
+        <option value="gu">ગુજરાતી (Gujarati)</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="kn">ಕನ್ನ ಡ (Kannada)</option>
+        <option value="ks">कश्मीरी (Kashmiri)</option>
+        <option value="kok">क़ोोंकणी (Konkani)</option>
+        <option value="mai">मैथिली (Maithili)</option>
+        <option value="ml">മലയാളം (Malayalam)</option>
+        <option value="mr">मराठी (Marathi)</option>
+        <option value="mni">মৈতৈলী (Meitei)</option>
+        <option value="ne">नेपाली (Nepali)</option>
+        <option value="or">ଓଡ଼ିଆ (Odia)</option>
+        <option value="pa">ਪੰਜਾਬੀ (Punjabi)</option>
+        <option value="sa">संस्कृत (Sanskrit)</option>
+        <option value="sat">ᱥᱟᱱᱛᱤ (Santali)</option>
+        <option value="sd">सिन्धी (Sindhi)</option>
+        <option value="ta">தமிழ் (Tamil)</option>
+        <option value="te">తెలుగు (Telugu)</option>
+        <option value="ur">اردو (Urdu)</option>
+    </select>
+    <br>
+    <div id="localizedContent">
+        <p id="greeting">Hello, welcome to our website!</p>
+        <p id="instruction">Select your preferred language above.</p>
+        <button id="submitBtn" onclick="submitForm()">Submit</button>
+    </div>
+    <script>
+        function changeLanguage() {
+            var language = document.getElementById("language").value;
+            fetchLocalizedContent(language);
+        }
+
+        function fetchLocalizedContent(language) {
+            // Simulate fetching localized content from a server or language file
+            var localizedContent = {
+                en: {
+                    greeting: "Hello, welcome to our website!",
+                    instruction: "Select your preferred language above.",
+                    submitBtn: "Submit"
+                },
+                as: {
+                    greeting: "হ্য়ালি়া, আম়াৰ ওলযবছ়াইটতি স্ব্যাগৈম!",
+                    instruction: "আল ়ান়াৰ ছন্দৰ ভ্যাষ়া লনব ব্যাচন কৰক।",
+                    submitBtn: "জময়া লিন"
+                },
+                bn: {
+                    greeting: "হ্য়ালিও, আমাৰ ওলযবস্যাইটতি স্ব্যাগৈম!",
+                    instruction: "আল ়ান়াৰ ছন্দৰ ভ্যাষ়া লনব ব্যাচন কৰক।",
+                    submitBtn: "জময়া লিন"
+                },
+                brx: {
+                    greeting: "नमस्ते, आमार ওলযবছ়াইটতি স্ব্যাগৈম!",
+                    instruction: "आल ়ান়াৰ ছন্দৰ ভ্যাষ়া লনব ব্যাচন কৰক।",
+                    submitBtn: "জময়া লিন"
+                },
+                doi: {
+                    greeting: "नमस्ते, आमार ওলযবছ়াইটতি স্ব্যাগৈম!",
+                    instruction: "आল ়ান়াৰ ছন্দৰ ভ্যাষ়া লনব ব্যাচন কৰক।",
+                    submitBtn: "জময়া লিন"
+                },
+                gu: {
+                    greeting: "હેલો, અમારી વેબસાઇટ પર આપનુું સ્વ્યાગત છે!",
+                    instruction: "તમારી પસુંદગીની ભાષા પર ક્લલક કરો.",
+                    submitBtn: "સબક્મટ"
+                },
+                hi: {
+                    greeting: "नमस्ते, आपका स्वागत है हमारी वेबसाइट पर!",
+                    instruction: "अपनी पसंदीदा भाषा चुनें।",
+                    submitBtn: "प्रस्तुत करें"
+                },
+                kn: {
+                    greeting: "ಹಲೋ, ನಮ್ಮ ವೆಬ್‌ಸೈಟ್‌ಗೆ ಸುಸ್ವಾಗತ ಹೇ!",
+                    instruction: "ನಿಮ್ಮ ಪ್ರಿಯ ಭಾಷೆಯನ್ನು ಎಂಚಿಕೆಂಡು.",
+                    submitBtn: "ಸಬ್ಮಿ ಟ"
+                },
+                ks: {
+                    greeting: "ہیلو، ہماری ویب سائٹ پر خوش آمدید،",
+                    instruction: "اپنی مرضی کی زبان منتخب کریں۔",
+                    submitBtn: "جمع کریں"
+                },
+                kok: {
+                    greeting: "िॅलॉ, आमच्या वेबसाइटला स्वागत आहे!",
+                    instruction: "आपल्या पसोंदीदा भाषेत निवडा.",
+                    submitBtn: "सबहमट करा"
+                },
+                mai: {
+                    greeting: "नमस्ते, आपका स्वागत है हमारी वेबसाइट पर!",
+                    instruction: "अपनी पसंदीदा भाषा चुनें।",
+                    submitBtn: "प्रस्तुत करें"
+                },
+                ml: {
+                    greeting: "ഹലോ, ഞങ്ങളുടെ വെബ്‌സൈറ്റിൽ സ്വാഗതം!",
+                    instruction: "തമ്മിൽ പസന്ദഗീനീയ ഭാഷ തിരഞ്ഞെടുക്കുക.",
+                    submitBtn: "എന്നിക്കുക"
+                },
+                mr: {
+                    greeting: "नमस्ते, आमच्या वेबसाइटला स्वागत आहे!",
+                    instruction: "आपल्या पसोंदीदा भाषेत निवडा.",
+                    submitBtn: "सबहमट करा"
+                },
+                mni: {
+                    greeting: "ನಮಸ್ಕಾರ, ಆಮರ ವೆಬ್ಸೈಟ್‌ಗೆ ಸ್ವಾಗತ ಹೇ!",
+                    instruction: "ನಿಮ್ಮ ಪ್ರಿಯ ಭಾಷೆಯನ್ನು ಎಂಚಿಕೆಂಡು.",
+                    submitBtn: "ಸಬ್ಮಿ ಟ"
+                },
+                ne: {
+                    greeting: "नमस्कार, आपको हाम्रो वेबसाइटमा स्वागत छ!",
+                    instruction: "अपना पसन्दीदा भाषा छुनौ.",
+                    submitBtn: "पेश गर्नुहोस्"
+                },
+                or: {
+                    greeting: "ନମସ୍କାର, ଆମର ଓୱେବସାଇଟୱର ସ୍ୱାଗତମ୍!",
+                    instruction: "ଆପଣଙ୍କ ପସନ୍ଦ ଭାଷା ଚୟନ କରନ୍ତୁ.",
+                    submitBtn: "ଜମା ଦ଼ିନ"
+                }
+            };
+            
+            // Update UI with localized content
+            document.getElementById("greeting").textContent = localizedContent[language].greeting;
+            document.getElementById("instruction").textContent = localizedContent[language].instruction;
+            document.getElementById("submitBtn").textContent = localizedContent[language].submitBtn;
+        }
+    </script>
+</body>
+</html>
+     

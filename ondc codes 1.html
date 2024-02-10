@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voice to Text</title>
+</head>
+<body>
+
+    <h1>Voice to Text Conversion</h1>
+
+    <button id="startButton">Start Recording</button>
+    <p id="output"></p>
+
+    <script>
+        const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+
+        recognition.lang = 'en-US';
+        recognition.interimResults = false;
+        recognition.maxAlternatives = 1;
+
+        document.getElementById('startButton').addEventListener('click', () => {
+            recognition.start();
+        });
+
+        recognition.addEventListener('result', (event) => {
+            const transcript = event.results[0][0].transcript;
+            document.getElementById('output').textContent = transcript;
+        });
+
+        recognition.addEventListener('end', () => {
+            recognition.stop();
+        });
+    </script>
+
+</body>
+</html>

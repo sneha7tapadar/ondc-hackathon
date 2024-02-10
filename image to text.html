@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image to Text</title>
+</head>
+<body>
+
+    <h1>Image to Text Conversion</h1>
+
+    <input type="file" id="imageInput" accept="image/*">
+    <button id="convertButton">Convert</button>
+    <div id="output"></div>
+
+    <script src="https://cdn.rawgit.com/naptha/tesseract.js/1.0.10/dist/tesseract.js"></script>
+    <script>
+        document.getElementById('convertButton').addEventListener('click', () => {
+            const imageInput = document.getElementById('imageInput');
+            const outputDiv = document.getElementById('output');
+
+            if (imageInput.files.length > 0) {
+                const file = imageInput.files[0];
+                const reader = new FileReader();
+
+                reader.onload = function (e) {
+                    const imageData = e.target.result;
+
+                    Tesseract.recognize(
+                        imageData,
+                        'eng',
+                        { logger: info => console.log(info) }
+                    ).then(({ data: { text } }) => {
+                        outputDiv.textContent = text;
+                    }).catch(error => {
+                        console.error(error);
+                    });
+                };
+
+                reader.readAsDataURL(file);
+            } else {
+                outputDiv.textContent = 'Please select an image.';
+            }
+        });
+    </script>
+
+</body>
+</html>
